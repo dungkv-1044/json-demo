@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C28BDB41E80FFAA00A79546 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C28BDB31E80FFA900A79546 /* Constant.swift */; };
+		3C8DFBCE1E8343CF00E7EA62 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8DFBCD1E8343CF00E7EA62 /* Person.swift */; };
 		3C8F38D21E7F6144005B5E87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8F38D11E7F6144005B5E87 /* AppDelegate.swift */; };
 		3C8F38D71E7F6144005B5E87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C8F38D51E7F6144005B5E87 /* Main.storyboard */; };
 		3C8F38D91E7F6144005B5E87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C8F38D81E7F6144005B5E87 /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C28BDB31E80FFA900A79546 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		3C8DFBCD1E8343CF00E7EA62 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		3C8F38CE1E7F6144005B5E87 /* JSON-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JSON-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C8F38D11E7F6144005B5E87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C8F38D61E7F6144005B5E87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,8 +111,10 @@
 				3C8F38D81E7F6144005B5E87 /* Assets.xcassets */,
 				3C8F38DD1E7F6144005B5E87 /* Info.plist */,
 				3C8F38FF1E7F70D6005B5E87 /* PersonTableViewCell.swift */,
+				3C8DFBCD1E8343CF00E7EA62 /* Person.swift */,
 				3C8F39011E7F79DF005B5E87 /* ParseJsonTableViewController.swift */,
 				3C8F39031E7F7CAE005B5E87 /* DataService.swift */,
+				3C28BDB31E80FFA900A79546 /* Constant.swift */,
 			);
 			path = "JSON-Demo";
 			sourceTree = "<group>";
@@ -265,8 +271,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C8DFBCE1E8343CF00E7EA62 /* Person.swift in Sources */,
 				3C8F39001E7F70D6005B5E87 /* PersonTableViewCell.swift in Sources */,
 				3C8F39021E7F79DF005B5E87 /* ParseJsonTableViewController.swift in Sources */,
+				3C28BDB41E80FFAA00A79546 /* Constant.swift in Sources */,
 				3C8F38D21E7F6144005B5E87 /* AppDelegate.swift in Sources */,
 				3C8F39041E7F7CAE005B5E87 /* DataService.swift in Sources */,
 			);
@@ -513,6 +521,7 @@
 				3C8F38F81E7F6144005B5E87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C8F38F91E7F6144005B5E87 /* Build configuration list for PBXNativeTarget "JSON-DemoTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +530,7 @@
 				3C8F38FB1E7F6144005B5E87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C8F38FC1E7F6144005B5E87 /* Build configuration list for PBXNativeTarget "JSON-DemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +539,7 @@
 				3C8F38FE1E7F6144005B5E87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -6,55 +6,56 @@
 //  Copyright © 2017 Khuat Van Dung. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class DataService {
     static let shared = DataService()
     let URL_String = "http://microblogging.wingnity.com/JSONParsingTutorial/jsonActors"
-
-    var _person: [Person] = []
-  
+    
+    private var _person: [Person]! {
+        didSet {
+            NotificationCenter.default.post(name: NotificationKey.didSetPersons, object: nil)
+        }
+    }
+    
     var person : [Person] {
         set {
             _person = newValue
         }
         get {
-            if _person.count == 0 {
+            if _person == nil {
                 downloadJSONWithUrl()
+                
             }
+              
             return _person
         }
     }
-  
+    
     func downloadJSONWithUrl() {
-        let url = NSURL(string: URL_String)
-        URLSession.shared.dataTask(with: (url as? URL)!, completionHandler: {(data,response,error) -> Void in
-            if let jsonObject = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? NSDictionary {
-                
-                if let actorArr = jsonObject!.value(forKey: "actors") as? NSArray {
-                    for actor in actorArr {
-                        if let actorDict = actor as? NSDictionary {
-                            let name = actorDict.value(forKey: "name") as? String
-                            let dob = actorDict.value(forKey: "dob") as? String
-                            let photo = actorDict.value(forKey: "image") as? String
-                            let p = Person(name: name!, dob: dob!, img: photo!)
-                            self._person.append(p)
-                        }
-                    }
+        _person = []
+        guard let url = URL(string: URL_String) else { return}
+        URLSession.shared.dataTask(with: url, completionHandler: {(data,response,error) -> Void in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            guard let jsonObject = (try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)) as? Dictionary<AnyHashable,Any> else  { return }
+            print(jsonObject)
+            guard let actors = jsonObject["actors"] as? Array<Any>  else { return }
+            var result : [Person] = []
+            for actor in actors {
+                if let actorDict = actor as? Dictionary<AnyHashable,Any> {
+                    let person = Person(dictionary: actorDict)
+                    result.append(person)
                 }
             }
+            self._person = result
         }).resume()
+       
     }
-
+    
 }
 
-class Person {
-    var name: String!
-    var dob: String!
-    var imgUrl : String!
-    init(name:String,dob:String,img:String) {
-        self.name = name
-        self.dob = dob
-        self.imgUrl = img
-    }
-}
+

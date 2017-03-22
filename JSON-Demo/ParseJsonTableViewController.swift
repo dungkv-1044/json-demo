@@ -10,18 +10,30 @@ import UIKit
 
 class ParseJsonTableViewController: UITableViewController {
 
-       
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-//        DataService.shared.downloadJSONWithUrl()
-        
+        registerNotification()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func registerNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: NotificationKey.didSetPersons, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func handleNotification(_ notification: Notification) {
+        DispatchQueue.main.async { //?? dung de lam gi
+            self.tableView.reloadData()
+        }
+    }
+    
 
     // MARK: - Table view data source
 
@@ -40,14 +52,17 @@ class ParseJsonTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PersonTableViewCell
         cell.nameLabel.text = DataService.shared.person[indexPath.row].name
         cell.dobLabel.text = DataService.shared.person[indexPath.row].dob
-        let imgURL = NSURL(string: DataService.shared.person[indexPath.row].imgUrl)
-        let data = NSData(contentsOf: (imgURL as? URL)!)
+//        let imgURL = NSURL(string: DataService.shared.person[indexPath.row].imgUrl)
+//        let data = NSData(contentsOf: (imgURL as? URL)!)
         cell.photoImage.image = UIImage(data: data as! Data)
-        // Configure the cell...
+        
 
         return cell
     }
     
+    @IBAction func reload(_ sender: Any) {
+        self.tableView.reloadData()
+    }
 
     /*
     // Override to support conditional editing of the table view.
